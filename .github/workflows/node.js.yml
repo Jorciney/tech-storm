@@ -81,7 +81,7 @@ jobs:
           wait-on: http://localhost:4200
           wait-on-timeout: 1200
           project: e2e
-          video: true
+          base-url: http://localhost
           working-directory: .
           browser: chrome
       - name: Upload video artifact
@@ -89,4 +89,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: cypress-videos
-          path: cypress/videos
+          path: dist/cypress
