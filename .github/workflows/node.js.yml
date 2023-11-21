@@ -85,7 +85,7 @@ jobs:
           browser: chrome
           config: pageLoadTimeout=100000,baseUrl=http://localhost:4200
       - name: Upload video artifact
-        if: failure() # This will only run if the previous step fails
+#        if: failure() # This will only run if the previous step fails
         uses: actions/upload-artifact@v2
         with:
           name: cypress-videos
