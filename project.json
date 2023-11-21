@@ -7,18 +7,23 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/tech-storm/browser",
+        "outputPath": "dist/tech-storm",
         "index": "./src/index.html",
-        "main": "./src/main.ts",
+        "browser": "./src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "./tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["./src/favicon.ico", "./src/assets"],
         "styles": ["./src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "server": "src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "server.ts"
+        }
       },
       "configurations": {
         "production": {
@@ -37,12 +42,9 @@
           "outputHashing": "all"
         },
         "development": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
+          "sourceMap": true
         }
       },
       "defaultConfiguration": "production"
@@ -82,62 +84,9 @@
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "tech-storm:build"
+        "buildTarget": "tech-storm:build",
+        "staticFilePath": "dist/tech-storm/browser"
       }
-    },
-    "server": {
-      "dependsOn": ["build"],
-      "executor": "@angular-devkit/build-angular:server",
-      "options": {
-        "outputPath": "dist/tech-storm/server",
-        "main": "server.ts",
-        "tsConfig": "tsconfig.server.json",
-        "inlineStyleLanguage": "scss"
-      },
-      "configurations": {
-        "production": {
-          "outputHashing": "media"
-        },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "sourceMap": true,
-          "extractLicenses": false,
-          "vendorChunk": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve-ssr": {
-      "executor": "@angular-devkit/build-angular:ssr-dev-server",
-      "configurations": {
-        "development": {
-          "browserTarget": "tech-storm:build:development",
-          "serverTarget": "tech-storm:server:development"
-        },
-        "production": {
-          "browserTarget": "tech-storm:build:production",
-          "serverTarget": "tech-storm:server:production"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "prerender": {
-      "executor": "@angular-devkit/build-angular:prerender",
-      "options": {
-        "routes": ["/"]
-      },
-      "configurations": {
-        "development": {
-          "browserTarget": "tech-storm:build:development",
-          "serverTarget": "tech-storm:server:development"
-        },
-        "production": {
-          "browserTarget": "tech-storm:build:production",
-          "serverTarget": "tech-storm:server:production"
-        }
-      },
-      "defaultConfiguration": "production"
     }
   }
 }
