@@ -81,7 +81,12 @@ jobs:
           wait-on: http://localhost:4200
           wait-on-timeout: 1200
           project: e2e
-          base-url: http://localhost
           video: true
           working-directory: .
           browser: chrome
+      - name: Upload video artifact
+#        if: failure() # This will only run if the previous step fails
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-videos
+          path: cypress/videos
