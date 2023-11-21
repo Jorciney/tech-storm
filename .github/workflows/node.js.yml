@@ -76,8 +76,9 @@ jobs:
       - uses: cypress-io/github-action@v6
         with:
           install: true
+          start: |
+            npx nx run e2e:e2e
           wait-on: http://localhost:4200
           wait-on-timeout: 1200
-          project: e2e
           working-directory: .
           browser: chrome
