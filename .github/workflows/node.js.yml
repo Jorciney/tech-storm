@@ -81,9 +81,9 @@ jobs:
           wait-on: http://localhost:4200
           wait-on-timeout: 1200
           project: e2e
-          base-url: http://localhost
           working-directory: .
           browser: chrome
+          config: pageLoadTimeout=100000,baseUrl=http://localhost:4200
       - name: Upload video artifact
 #        if: failure() # This will only run if the previous step fails
         uses: actions/upload-artifact@v2

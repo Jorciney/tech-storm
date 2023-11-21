@@ -3,5 +3,5 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: nxE2EPreset(__filename, { cypressDir: 'src' }),
-  video: true
+  video: true,
 });
