@@ -74,7 +74,7 @@ jobs:
           path: node_modules
           key: node-${{ matrix.node-version }}-${{ hashFiles('package-lock.json') }}
       - name: Start server in the background
-        run:  npm start
+        run:  npm start &
       - uses: cypress-io/github-action@v6
         with:
           install: true
