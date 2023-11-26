@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import {WeatherData} from "../model/weather-data";
+import { WeatherData } from '../model/weather-data';
 
 export const initWeather = createAction('[Weather Page] Init');
 export const loadWeatherData = createAction('[Weather/API] load weather data', props<{ location: string }>());

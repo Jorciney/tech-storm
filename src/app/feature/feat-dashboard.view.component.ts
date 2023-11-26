@@ -1,13 +1,8 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   standalone: true,
   selector: 'tech-storm-dashboard-view',
-  template: `
-    <div>DashboardView works!</div>
-  `
+  template: ` <div>DashboardView works!</div> `,
 })
-
-export class DashboardViewComponent {
-
-}
+export class DashboardViewComponent {}
