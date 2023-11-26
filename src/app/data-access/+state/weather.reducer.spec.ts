@@ -1,18 +1,14 @@
 import { Action } from '@ngrx/store';
 
 import * as WeatherActions from './weather.actions';
-import { WeatherEntity } from './weather.models';
 import { WeatherState, initialWeatherState, weatherReducer } from './weather.reducer';
 
 describe('Weather Reducer', () => {
-  const createWeatherEntity = (id: string, name = ''): WeatherEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createWeatherData = jest.mock('WeatherData');
 
   describe('valid Weather actions', () => {
     it('loadWeatherSuccess should return the list of known Weather', () => {
-      const weather = [createWeatherEntity('PRODUCT-AAA'), createWeatherEntity('PRODUCT-zzz')];
+      const weather = [createWeatherData];
       const action = WeatherActions.loadWeatherSuccess({ weather });
 
       const result: WeatherState = weatherReducer(initialWeatherState, action);

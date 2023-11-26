@@ -1,7 +1,9 @@
-import {inject} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {WeatherData} from "./model/weather-data";
 
 
+@Injectable({ providedIn: 'root' })
 export class WeatherService {
   private readonly httpClient = inject(HttpClient);
 

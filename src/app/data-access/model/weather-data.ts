@@ -1,5 +1,5 @@
 /** https://www.visualcrossing.com/ is used for the weather api */
-interface WeatherData {
+export interface WeatherData {
   queryCost: number;
   latitude: number;
   longitude: number;

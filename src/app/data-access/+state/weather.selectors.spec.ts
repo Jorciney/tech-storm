@@ -1,22 +1,18 @@
-import { WeatherEntity } from './weather.models';
 import { weatherAdapter, WeatherPartialState, initialWeatherState } from './weather.reducer';
 import * as WeatherSelectors from './weather.selectors';
+import {WeatherData} from "../model/weather-data";
 
 describe('Weather Selectors', () => {
   const ERROR_MSG = 'No Error Available';
-  const getWeatherId = (it: WeatherEntity) => it.id;
-  const createWeatherEntity = (id: string, name = '') =>
-    ({
-      id,
-      name: name || `name-${id}`,
-    } as WeatherEntity);
+  const getWeatherId = (it: WeatherData) => it.longitude && it.latitude ? `${it.longitude}-${it.latitude}` : '';
+  const createWeatherData = jest.mock<WeatherData>;
 
   let state: WeatherPartialState;
 
   beforeEach(() => {
     state = {
       weather: weatherAdapter.setAll(
-        [createWeatherEntity('PRODUCT-AAA'), createWeatherEntity('PRODUCT-BBB'), createWeatherEntity('PRODUCT-CCC')],
+        [createWeatherData as unknown as WeatherData],
         {
           ...initialWeatherState,
           selectedId: 'PRODUCT-BBB',
@@ -37,7 +33,7 @@ describe('Weather Selectors', () => {
     });
 
     it('selectEntity() should return the selected Entity', () => {
-      const result = WeatherSelectors.selectEntity(state) as WeatherEntity;
+      const result = WeatherSelectors.selectEntity(state) as WeatherData;
       const selId = getWeatherId(result);
 
       expect(selId).toBe('PRODUCT-BBB');

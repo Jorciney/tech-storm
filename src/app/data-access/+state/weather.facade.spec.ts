@@ -7,9 +7,7 @@ import { readFirst } from '@nx/angular/testing';
 import * as WeatherActions from './weather.actions';
 import { WeatherEffects } from './weather.effects';
 import { WeatherFacade } from './weather.facade';
-import { WeatherEntity } from './weather.models';
-import { WEATHER_FEATURE_KEY, WeatherState, initialWeatherState, weatherReducer } from './weather.reducer';
-import * as WeatherSelectors from './weather.selectors';
+import { WEATHER_FEATURE_KEY, WeatherState, weatherReducer } from './weather.reducer';
 
 interface TestSchema {
   weather: WeatherState;
@@ -18,10 +16,7 @@ interface TestSchema {
 describe('WeatherFacade', () => {
   let facade: WeatherFacade;
   let store: Store<TestSchema>;
-  const createWeatherEntity = (id: string, name = ''): WeatherEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createWeatherEntity = jest.mock('WeatherData');
 
   describe('used in NgModule', () => {
     beforeEach(() => {
@@ -75,7 +70,7 @@ describe('WeatherFacade', () => {
 
       store.dispatch(
         WeatherActions.loadWeatherSuccess({
-          weather: [createWeatherEntity('AAA'), createWeatherEntity('BBB')],
+          weather: [createWeatherEntity],
         })
       );
 

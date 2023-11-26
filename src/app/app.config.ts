@@ -8,9 +8,11 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import * as fromWeather from './data-access/+state/weather.reducer';
 import { WeatherEffects } from './data-access/+state/weather.effects';
 import { WeatherFacade } from './data-access/+state/weather.facade';
+import {provideHttpClient} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
     provideEffects(WeatherEffects),
     provideState(fromWeather.WEATHER_FEATURE_KEY, fromWeather.weatherReducer),
     WeatherFacade,
