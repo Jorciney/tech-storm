@@ -3,11 +3,12 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import * as WeatherActions from './weather.actions';
 import { WeatherData } from '../model/weather-data';
+import { createSortedStateAdapter } from '@ngrx/entity/src/sorted_state_adapter';
 
 export const WEATHER_FEATURE_KEY = 'weather';
 
-export interface WeatherState extends EntityState<WeatherData> {
-  selectedId?: string | number; // which Weather record has been selected
+export interface WeatherState {
+  weatherData: WeatherData | null; // which Weather record has been selected
   loaded: boolean; // has the Weather list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -16,15 +17,10 @@ export interface WeatherPartialState {
   readonly [WEATHER_FEATURE_KEY]: WeatherState;
 }
 
-export const weatherAdapter: EntityAdapter<WeatherData> = createEntityAdapter<WeatherData>({
-  selectId: (weatherData) =>
-    weatherData.longitude && weatherData.latitude ? `${weatherData.longitude}-${weatherData.latitude}` : '',
-});
-
-export const initialWeatherState: WeatherState = weatherAdapter.getInitialState({
-  // set initial required properties
+export const initialWeatherState: WeatherState = {
   loaded: false,
-});
+  weatherData: null,
+};
 
 const reducer = createReducer(
   initialWeatherState,
@@ -33,9 +29,7 @@ const reducer = createReducer(
     loaded: false,
     error: null,
   })),
-  on(WeatherActions.loadWeatherSuccess, (state, { weather }) =>
-    weatherAdapter.setAll(weather, { ...state, loaded: true })
-  ),
+  on(WeatherActions.loadWeatherSuccess, (state, { weather }) => ({ ...state, weatherData: weather, loaded: true })),
   on(WeatherActions.loadWeatherFailure, (state, { error }) => ({
     ...state,
     error,

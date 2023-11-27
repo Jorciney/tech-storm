@@ -6,9 +6,12 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { WeatherFacade } from './data-access/+state/weather.facade';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideEffects(),
+    provideStore(),
     provideHttpClient(withFetch()),
     WeatherFacade,
     provideStoreDevtools({
@@ -16,7 +19,6 @@ export const appConfig: ApplicationConfig = {
       logOnly: !isDevMode(),
       connectInZone: true,
     }),
-    provideStore(),
     provideClientHydration(),
     provideRouter(appRoutes),
   ],

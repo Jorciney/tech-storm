@@ -6,7 +6,7 @@ export const loadWeatherData = createAction('[Weather/API] load weather data', p
 
 export const loadWeatherSuccess = createAction(
   '[Weather/API] Load Weather Success',
-  props<{ weather: WeatherData[] }>()
+  props<{ weather: WeatherData | null }>()
 );
 
 export const loadWeatherFailure = createAction('[Weather/API] Load Weather Failure', props<{ error: any }>());

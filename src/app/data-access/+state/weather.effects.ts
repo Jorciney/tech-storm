@@ -10,7 +10,7 @@ export class WeatherEffects {
   init$ = createEffect(() =>
     this.actions$.pipe(
       ofType(WeatherActions.initWeather),
-      switchMap(() => of(WeatherActions.loadWeatherSuccess({ weather: [] }))),
+      switchMap(() => of(WeatherActions.loadWeatherSuccess({ weather: null }))),
       catchError((error) => {
         console.error('Error', error);
         return of(WeatherActions.loadWeatherFailure({ error }));
@@ -22,7 +22,7 @@ export class WeatherEffects {
     this.actions$.pipe(
       ofType(WeatherActions.loadWeatherData),
       switchMap((action) => this.weatherService.getWeatherData(action.location)),
-      map(() => WeatherActions.loadWeatherSuccess({ weather: [] })),
+      map((result) => WeatherActions.loadWeatherSuccess({ weather: result })),
       catchError((error) => {
         console.error('Error', error);
         return of(WeatherActions.loadWeatherFailure({ error }));

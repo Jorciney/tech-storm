@@ -8,13 +8,7 @@ import * as WeatherSelectors from './weather.selectors';
 export class WeatherFacade {
   private readonly store = inject(Store);
 
-  /**
-   * Combine pieces of state using createSelector,
-   * and expose them as observables through the facade.
-   */
   loaded$ = this.store.pipe(select(WeatherSelectors.selectWeatherLoaded));
-  allWeather$ = this.store.pipe(select(WeatherSelectors.selectAllWeather));
-  selectedWeather$ = this.store.pipe(select(WeatherSelectors.selectEntity));
 
   init() {
     this.store.dispatch(WeatherActions.initWeather());
