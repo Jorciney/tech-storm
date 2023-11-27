@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build-page": "nx build consent-flow --output-path docs --base-href /consent-flow/",
+    "build-page": "nx build tech-storm --output-path docs --base-href /tech-storm/",
     "build": "nx build",
     "format": "npx prettier --write .",
     "test": "nx test"
