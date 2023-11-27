@@ -1,5 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { inject, Injectable } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 
 import * as WeatherActions from './weather.actions';
 import * as WeatherSelectors from './weather.selectors';
@@ -15,6 +15,7 @@ export class WeatherFacade {
   loaded$ = this.store.pipe(select(WeatherSelectors.selectWeatherLoaded));
   allWeather$ = this.store.pipe(select(WeatherSelectors.selectAllWeather));
   selectedWeather$ = this.store.pipe(select(WeatherSelectors.selectEntity));
+
   init() {
     this.store.dispatch(WeatherActions.initWeather());
   }
