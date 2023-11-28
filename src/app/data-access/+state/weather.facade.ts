@@ -9,6 +9,7 @@ export class WeatherFacade {
   private readonly store = inject(Store);
 
   loaded$ = this.store.pipe(select(WeatherSelectors.selectWeatherLoaded));
+  weatherData$ = this.store.pipe(select(WeatherSelectors.selectWeatherData));
 
   init() {
     this.store.dispatch(WeatherActions.initWeather());
