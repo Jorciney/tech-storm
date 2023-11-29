@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build-page": "nx build tech-storm --output-path docs --base-href /tech-storm/browser/",
+    "build-page": "nx build tech-storm --output-path docs --base-href /tech-storm/ && node .//post-build.js",
     "build": "nx build",
     "format": "npx prettier --write .",
     "test": "nx test"

@@ -85,7 +85,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "tech-storm:build",
-        "staticFilePath": "dist/tech-storm/browser"
+        "staticFilePath": "dist/tech-storm"
       }
     }
   }
