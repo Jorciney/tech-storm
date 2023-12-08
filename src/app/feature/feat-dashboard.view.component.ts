@@ -11,15 +11,21 @@ import { map } from 'rxjs';
   template: `
     <div *ngrxLet="weatherData$; let weather" class="h-full w-full flex flex-col justify-center items-center">
       <div class="flex flex-row items-center justify-between gap-5" *ngrxLet="currentWeather$; let currentConditions">
-        <div>
-          <div class="font-extrabold text-3xl">{{ weather?.address | uppercase }}</div>
+        <div class="flex flex-col gap-8">
+          <div class="flex flex-col gap-2">
+            <div class="flex flex-col">
+              <div class="font-extrabold text-3xl">{{ weather?.address | uppercase }}</div>
+              <div class="text-gray-500 text-xs">Feels like {{ weather?.currentConditions?.feelslike }} °</div>
+              <div class="text-gray-500 text-xs">Chance of {{ weather?.currentConditions?.preciptype }} {{ weather?.currentConditions?.precipprob }} %</div>
+            </div>
+          </div>
           <div class="font-extrabold text-3xl">{{ currentConditions?.temp | number : '1.0-0' }} °</div>
         </div>
         <img *ngIf="currentConditions?.icon"
-            [ngSrc]="'assets/icons/animated/' + currentConditions?.icon + '.svg'"
-            [width]="200"
-            [height]="150"
-            alt="weather-icon"/>
+             [ngSrc]="'assets/icons/animated/' + currentConditions?.icon + '.svg'"
+             [width]="200"
+             [height]="150"
+             alt="weather-icon"/>
       </div>
       <tech-storm-todays-forecast></tech-storm-todays-forecast>
     </div>
