@@ -1,9 +1,6 @@
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-
 import * as WeatherActions from './weather.actions';
 import { WeatherData } from '../model/weather-data';
-import { createSortedStateAdapter } from '@ngrx/entity/src/sorted_state_adapter';
 
 export const WEATHER_FEATURE_KEY = 'weather';
 
