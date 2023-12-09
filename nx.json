@@ -62,6 +62,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "tech-storm",
-  "nxCloudAccessToken": "MTdhOTZmZWUtZjIwMy00YzUzLTljN2ItZTQxZWU2YjZkYTdjfHJlYWQtd3JpdGU="
+  "defaultProject": "tech-storm"
 }
