@@ -9,11 +9,12 @@ import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
     <div class="flex flex-col overflow-x-auto w-8/12 p-4 text-gray-500 justify-start bg-gray-100 rounded-2xl">
       <div class="text-lg font-bold">TODAY'S FORECAST</div>
       <div>
-        <div class="flex flex-row justify-between items-center max-w-full overflow-x-auto" >
-          <div class="flex flex-col justify-center items-center font-bold " *ngFor="let hour of todaysForecast">
+        <div class="flex flex-row justify-between items-center max-w-full overflow-x-auto">
+          <div class="flex flex-col justify-center items-center font-bold px-5 border-r"
+               *ngFor="let hour of todaysForecast">
             <div>{{ hour.datetime?.substring(0, 5)}}h</div>
             <img *ngIf="hour?.icon" alt="{{hour?.conditions}}"
-                 [ngSrc]="'assets/icons/static/' + hour?.icon + '.svg'"
+                 [ngSrc]="'assets/icons/static/' + hour?.icon + '.png'"
                  [width]="100"
                  [height]="100"
             />
