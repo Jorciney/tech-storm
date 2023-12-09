@@ -13,13 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.10]
+        node-version: [20.10.0]
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
       - name: Cache node_modules
         id: cache-node-modules
         uses: actions/cache@v2
@@ -36,13 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.10]
+        node-version: [20.10.0]
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
       - name: Restore node_modules from cache
         uses: actions/cache@v2
         with:
@@ -55,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.10]
+        node-version: [20.10.0]
     steps:
       - uses: actions/checkout@v3
       - name: Restore node_modules from cache
@@ -73,7 +65,7 @@ jobs:
       options: --user 1001
     strategy:
       matrix:
-        node-version: [20.10]
+        node-version: [20.10.0]
     steps:
       - uses: actions/checkout@v3
       - name: Restore node_modules from cache
