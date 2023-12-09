@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.10]
     steps:
       - uses: actions/checkout@v3
       - name: Restore node_modules from cache
@@ -67,7 +67,7 @@ jobs:
       options: --user 1001
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.10]
     steps:
       - uses: actions/checkout@v3
       - name: Restore node_modules from cache
