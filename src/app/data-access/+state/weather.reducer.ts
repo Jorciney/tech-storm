@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as WeatherActions from './weather.actions';
+
 import { WeatherData } from '../model/weather-data';
+import * as WeatherActions from './weather.actions';
 
 export const WEATHER_FEATURE_KEY = 'weather';
 

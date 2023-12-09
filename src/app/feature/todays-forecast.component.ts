@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {Hour} from "../data-access/model/weather-data";
-import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import { Component, Input } from '@angular/core';
+import { Hour } from '../data-access/model/weather-data';
+import { DatePipe, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -10,25 +10,23 @@ import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
       <div class="text-lg font-bold">TODAY'S FORECAST</div>
       <div>
         <div class="flex flex-row justify-between items-center max-w-full overflow-x-auto">
-          <div class="flex flex-col justify-center items-center font-bold px-5 border-r"
-               *ngFor="let hour of todaysForecast">
-            <div>{{ hour?.datetime?.substring(0, 5)}}h</div>
-            <img *ngIf="hour?.icon" alt="{{hour?.conditions}}"
-                 [ngSrc]="'assets/icons/static/' + hour?.icon + '.png'"
-                 [width]="100"
-                 [height]="100"
-            />
+          <div
+            class="flex flex-col justify-center items-center font-bold px-5 border-r"
+            *ngFor="let hour of todaysForecast">
+            <div>{{ hour?.datetime?.substring(0, 5) }}h</div>
+            <img
+              *ngIf="hour?.icon"
+              alt="{{ hour?.conditions }}"
+              [ngSrc]="'assets/icons/static/' + hour?.icon + '.png'"
+              [width]="100"
+              [height]="100" />
             <div>{{ hour.temp }} °</div>
           </div>
         </div>
       </div>
-    </div> `,
-  imports: [
-    NgForOf,
-    NgIf,
-    NgOptimizedImage,
-    DatePipe
-  ]
+    </div>
+  `,
+  imports: [NgForOf, NgIf, NgOptimizedImage, DatePipe],
 })
 export class TodaysForecastComponent {
   @Input() todaysForecast: Hour[] = [];
