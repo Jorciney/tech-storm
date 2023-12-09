@@ -14,7 +14,7 @@ export interface WeatherData {
   currentConditions: CurrentConditions;
 }
 
-interface Day {
+export interface Day {
   datetime: string;
   datetimeEpoch: number;
   tempmax: number;
@@ -54,7 +54,7 @@ interface Day {
   hours: Hour[];
 }
 
-interface Hour {
+export interface Hour {
   datetime: string;
   datetimeEpoch: number;
   temp: number;
@@ -82,7 +82,7 @@ interface Hour {
   source: string;
 }
 
-interface Station {
+export interface Station {
   distance: number;
   latitude: number;
   longitude: number;
@@ -93,7 +93,7 @@ interface Station {
   contribution: number;
 }
 
-interface CurrentConditions extends Omit<Hour, 'datetime' | 'datetimeEpoch'> {
+export interface CurrentConditions extends Omit<Hour, 'datetime' | 'datetimeEpoch'> {
   datetime: string;
   datetimeEpoch: number;
   sunrise: string;

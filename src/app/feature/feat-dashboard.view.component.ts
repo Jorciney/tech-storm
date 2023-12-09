@@ -16,18 +16,21 @@ import { map } from 'rxjs';
             <div class="flex flex-col">
               <div class="font-extrabold text-3xl">{{ weather?.address | uppercase }}</div>
               <div class="text-gray-500 text-xs">Feels like {{ weather?.currentConditions?.feelslike }} °</div>
-              <div class="text-gray-500 text-xs">Chance of {{ weather?.currentConditions?.preciptype }} {{ weather?.currentConditions?.precipprob }} %</div>
+              <div class="text-gray-500 text-xs">Chance
+                of {{ weather?.currentConditions?.preciptype }} {{ weather?.currentConditions?.precipprob }} %
+              </div>
+              <div class="text-gray-500 text-xs">Sunset at {{ weather?.currentConditions?.sunset }}</div>
             </div>
           </div>
           <div class="font-extrabold text-3xl">{{ currentConditions?.temp | number : '1.0-0' }} °</div>
         </div>
-        <img *ngIf="currentConditions?.icon"
+        <img *ngIf="currentConditions?.icon" alt="{{currentConditions?.conditions}}" priority="true"
              [ngSrc]="'assets/icons/animated/' + currentConditions?.icon + '.svg'"
              [width]="200"
-             [height]="150"
-             alt="weather-icon"/>
+             [height]="200"
+        />
       </div>
-      <tech-storm-todays-forecast></tech-storm-todays-forecast>
+      <tech-storm-todays-forecast [todaysForecast]="weather?.days?.[0]?.hours || []" class="w-full"></tech-storm-todays-forecast>
     </div>
   `,
   imports: [TodaysForecastComponent, LetDirective, UpperCasePipe, DecimalPipe, NgOptimizedImage, NgIf],
