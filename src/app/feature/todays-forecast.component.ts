@@ -12,7 +12,7 @@ import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
         <div class="flex flex-row justify-between items-center max-w-full overflow-x-auto">
           <div class="flex flex-col justify-center items-center font-bold px-5 border-r"
                *ngFor="let hour of todaysForecast">
-            <div>{{ hour.datetime?.substring(0, 5)}}h</div>
+            <div>{{ hour?.datetime?.substring(0, 5)}}h</div>
             <img *ngIf="hour?.icon" alt="{{hour?.conditions}}"
                  [ngSrc]="'assets/icons/static/' + hour?.icon + '.png'"
                  [width]="100"
