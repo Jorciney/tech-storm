@@ -42,7 +42,7 @@ jobs:
         with:
           path: node_modules
           key: node-${{ matrix.node-version }}-${{ hashFiles('package-lock.json') }}
-      - run: npm run build --if-present
+      - run: npm run build --verbose
 
   test:
     needs: prepare
