@@ -16,7 +16,6 @@ export const appConfig: ApplicationConfig = {
     WeatherFacade,
     provideStoreDevtools({
       maxAge: 25,
-      logOnly: !isDevMode(),
       connectInZone: true,
     }),
     provideClientHydration(),
