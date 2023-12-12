@@ -7,8 +7,11 @@ import { WeatherEffects } from './data-access/+state/weather.effects';
 export const appRoutes: Route[] = [
   {
     path: '',
-    pathMatch: 'full',
     loadComponent: () => import('./feature/feat-dashboard.view.component').then((c) => c.DashboardViewComponent),
     providers: [provideState(WEATHER_FEATURE_KEY, weatherReducer), provideEffects(WeatherEffects)],
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
